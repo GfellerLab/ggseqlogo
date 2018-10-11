@@ -67,7 +67,7 @@ get_font <- function(font){
 logo_data <- function( seqs, method='bits', stack_width=0.95, 
                        rev_stack_order=F, font, seq_group=1, 
                        seq_type = 'auto', namespace=NULL, 
-                       additionalAA=NULL ){
+                       additionalAA=NULL, smallSampleCorr=TRUE ){
 
   # Get font 
   font_df = get_font(font)
@@ -78,7 +78,7 @@ logo_data <- function( seqs, method='bits', stack_width=0.95,
   # Generate heights based on method
   if(method == 'bits'){
     hh = bits_method(seqs, decreasing = rev_stack_order, seq_type = seq_type, namespace = namespace,
-                     additionalAA = additionalAA)
+                     additionalAA = additionalAA, smallSampleCorr = smallSampleCorr)
   }else if(method == 'probability'){
     hh = probability_method(seqs, decreasing = rev_stack_order, seq_type = seq_type, namespace = namespace)
   }else if(method == 'custom'){
@@ -152,7 +152,7 @@ geom_logo <- function(data = NULL, method='bits', seq_type='auto', namespace=NUL
                       font='roboto_medium', stack_width=0.95, rev_stack_order=F, col_scheme = 'auto',
                       low_col='black', high_col='yellow', na_col='grey20',
                       plot=T,
-                      additionalAA = additionalAA, ...) {
+                      additionalAA = additionalAA, smallSampleCorr = smallSampleCorr, ...) {
   
   if(stack_width > 1 | stack_width <= 0) stop('"stack_width" must be between 0 and 1')
   if(is.null(data)) stop('Missing "data" parameter!')
@@ -179,7 +179,7 @@ geom_logo <- function(data = NULL, method='bits', seq_type='auto', namespace=NUL
       logo_data(seqs = curr_seqs, method = method, stack_width = stack_width, 
                 rev_stack_order = rev_stack_order, seq_group = n, seq_type = seq_type, 
                 font = font, namespace=namespace,
-                additionalAA = additionalAA)
+                additionalAA = additionalAA, smallSampleCorr = smallSampleCorr)
     })
     data = do.call(rbind, data_sp)
     # Set factor for order of facet

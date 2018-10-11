@@ -90,12 +90,15 @@ findNamespace <- function(letter_mat, seq_type, namespace){
 # @param pwm Position weight matrix
 # @param N Number of letters in namespace
 # @param Nseqs Number of sequences in PWM
-computeBits <- function(pwm, N=4, Nseqs=NULL){
+computeBits <- function(pwm, N=4, Nseqs=NULL,
+                        smallSampleCorr = smallSampleCorr){
   Nseqs = attr(pwm, 'nongapped')
   H_i = - apply(pwm, 2, function(col) sum(col * log2(col), na.rm=T))
   e_n = 0
-  if(!is.null(Nseqs)) e_n = (1/logb(2)) * (N-1)/(2*Nseqs) 
- 
+  if(smallSampleCorr){
+    if(!is.null(Nseqs)) e_n = (1/logb(2)) * (N-1)/(2*Nseqs) 
+  }
+  
   R_i = log2(N) - (H_i  + e_n)
   # Set any negatives to 0
   R_i = pmax(R_i, 0)
@@ -108,7 +111,7 @@ computeBits <- function(pwm, N=4, Nseqs=NULL){
 # @param namespace letters used for matrix construction
 # @param keep_letter_mat Keep letter matrix for some height methods
 makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F,
-                    additionalAA = additionalAA){
+                    additionalAA = additionalAA, smallSampleCorr=smallSampleCorr){
   
   letter_mat = NA
   if(is.matrix(seqs)){
@@ -190,7 +193,8 @@ makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F,
   if(seq_type == 'aa') namespace = c(namespace, 'X', 'B', 'Z')
 
   # Information content
-  attr(pfm_mat, 'bits') = computeBits(pfm_mat, N, nseqs)
+  attr(pfm_mat, 'bits') = computeBits(pfm_mat, N, nseqs,
+                                      smallSampleCorr=smallSampleCorr)
   
   # Assign AA names to rows/pos col
   rownames(pfm_mat) = namespace
@@ -274,10 +278,10 @@ matrix_to_heights <- function(mat, seq_type, decreasing=T){
 
 # Shannon entropy method
 bits_method <- function(seqs, decreasing,
-                        additionalAA = additionalAA, ...){
+                        additionalAA = additionalAA, smallSampleCorr=smallSampleCorr, ...){
   # Make PFM
   pfm = makePFM(seqs,
-                additionalAA = additionalAA, ...)
+                additionalAA = additionalAA, smallSampleCorr=smallSampleCorr, ...)
 
   # Get ic
   ic = attr(pfm, 'bits')
