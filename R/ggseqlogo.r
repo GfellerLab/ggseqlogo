@@ -256,7 +256,7 @@ geom_logo <- function(data = NULL, method='bits', seq_type='auto', namespace=NUL
   
   # Expand 0.05 addidtive 
   list(logo_layer, scale_x_continuous(breaks = breaks_fun, labels = identity), 
-       ylab(y_lab), xlab(''), colscale_opts, guides_opts, coord_cartesian(ylim=y_lim), 
+       ylab(y_lab), xlab(''), colscale_opts, guides_opts, #coord_cartesian(ylim=y_lim), 
        extra_opts)
 }
 
@@ -310,6 +310,89 @@ ggseqlogo <- function(data, facet='wrap', scales='free_x', ncol=NULL, nrow=NULL,
   return(p)
 }
 
+
+#' Modified version of ggseqlogo to display non-canonical (e.g. phosphorylated) amino acids in different color.
+#'
+#' @description \code{ggseqlogoMOD} Plotting the sequence logo of peptides with modifications in purple. Modified residues have to be in lowercase letters of the respective amino acid.
+#'
+#' Default values are for sequences inlcuding phosphorylated residues (i.e. sequences over an alphabet of 23 amino acids, 20 canonical amino acids plus s, t, and y).
+#'
+#' @param data A list of sequences or a position weight matrix.
+#' @param smallSampleCorr Include small-sample correction in information content or not.
+#' @param col_scheme Color scheme of plot.
+#' @param additionalAA Amino acids that include a modification.
+#' @param seq_type Sequence type of input.
+#' @param font Font for plot.
+#' @param legendText Plot legend or not.
+#' @param ylim Range of y-axis.
+#' @param title Title of plot.
+#' @param titleSize Size of title.
+#' @param titlePos Horizontal position of title.
+#' @param axisTextSizeX Size of x tick labels.
+#' @param axisTextSizeY Size of y tick labels.
+#' @param axisTitleSize Size of axis title.
+#' @param ... Additional arguments passed to \code{\link{geom_logo}}
+#'
+#' @export
+#' @examples
+#' # Load package:
+#' library(ggseqlogo)
+#'
+#' # Load example data:
+#' data(data_B0702, package="ggseqlogo")
+#'
+#' # Plot phosphorylated binding motif of HLA-B0702:
+#' ggseqlogoMOD(b7p)
+ggseqlogoMOD <- function( data,
+                          smallSampleCorr = FALSE,
+                          col_scheme = 'modified',
+                          additionalAA = 'sty',
+                          seq_type = 'aa',
+                          font = 'helvetica_modified',
+                          legendText = FALSE,
+                          ylim = c(0, log2(20 + length(strsplit(additionalAA, split = '')[[1]])) ),
+                          title = NULL,
+                          titleSize = 24,
+                          titlePos = 0.5,
+                          axisTextSizeX = 18,
+                          axisTextSizeY = 18,
+                          axisTitleSize = 18,
+                          ...){
+  ## find length of peptides
+  if(typeof(data) == 'character'){
+    lengthP = nchar(data[[1]])
+  } else if(typeof(data) == 'double'){
+    lengthP = ncol(data)
+  }
+  
+  #### plot sequence logo
+  p = ggplot() +
+    
+    #### do the plotting of the sequence logo (by Omar Wagih's ggseqlogo)
+    geom_logo(data=data, font=font, 
+              col_scheme=col_scheme, legendText=legendText,
+              smallSampleCorr = smallSampleCorr, additionalAA = additionalAA) +
+    
+    #### size of title, size of x and y tick marks, size of y axis description
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          panel.background = element_blank(), axis.line = element_line(colour = "black", size = 0.5),
+          axis.ticks = element_line(colour = 'black', size = 0.5),
+          plot.title = element_text(size=titleSize, hjust=titlePos, vjust = 0.1, family="sans"),
+          axis.text.x = element_text(size=axisTextSizeX, color = 'black', family="sans"),
+          axis.text.y = element_text(size=axisTextSizeY, color = 'black', family="sans"),
+          axis.title.y = element_text(size=axisTitleSize, family="sans")) +
+    
+    #### remove space between axis and plot space
+    scale_y_continuous(expand = c(0, 0)) +
+    
+    #### costum y axis range
+    coord_cartesian(ylim = ylim) +
+    
+    #### add title if given
+    ggtitle(title)
+  
+  return(p)
+}
 
 #' List of aligned transcription factor binding sequences 
 #'

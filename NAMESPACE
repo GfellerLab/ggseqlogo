@@ -2,6 +2,7 @@
 
 export(geom_logo)
 export(ggseqlogo)
+export(ggseqlogoMOD)
 export(list_col_schemes)
 export(list_fonts)
 export(make_col_scheme)
