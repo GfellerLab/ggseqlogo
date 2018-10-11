@@ -152,7 +152,7 @@ geom_logo <- function(data = NULL, method='bits', seq_type='auto', namespace=NUL
                       font='roboto_medium', stack_width=0.95, rev_stack_order=F, col_scheme = 'auto',
                       low_col='black', high_col='yellow', na_col='grey20',
                       plot=T,
-                      additionalAA = additionalAA, smallSampleCorr = smallSampleCorr, ...) {
+                      additionalAA = additionalAA, smallSampleCorr = smallSampleCorr, legendText = FALSE, ...) {
   
   if(stack_width > 1 | stack_width <= 0) stop('"stack_width" must be between 0 and 1')
   if(is.null(data)) stop('Missing "data" parameter!')
@@ -218,7 +218,12 @@ geom_logo <- function(data = NULL, method='bits', seq_type='auto', namespace=NUL
   
   # If letters and group are the same, don't draw legend
   guides_opts = NULL
-  if(identical(cs$letter, cs$group)) guides_opts = guides(fill=F)
+  # option to turn legend off
+  if(legendText){
+    if(identical(cs$letter, cs$group)) guides_opts = guides(fill=F)
+  } else{
+    guides_opts = guides(fill=F)
+  }
   
   y_lim = NULL
   extra_opts = NULL
