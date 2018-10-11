@@ -6,7 +6,7 @@
 list_col_schemes <- function(v=T){
   
   col_schemes = c('auto', 'chemistry', 'chemistry2','hydrophobicity', 'nucleotide', 'nucleotide2',
-             'base_pairing', 'clustalx', 'taylor')
+             'base_pairing', 'clustalx', 'taylor', 'modified')
   if(!v) return(col_schemes)
   message('Available ggseqlogo color schemes:')
   for(f in col_schemes) message('\t', f)
@@ -103,7 +103,16 @@ get_col_scheme = function(col_scheme, seq_type='auto'){
                    '#66FF00','#33FF00','#00FF00','#00FF66','#00FFCC','#00CCFF','#0066FF','#0000FF',
                    '#6600FF','#CC00FF','#FF00CC','#FF0066'),
            stringsAsFactors = F
-         )
+         ),
+         
+         #### color scheme including color for lower case letters (modified amino acids)
+         modified = data.frame(
+           letter = c('G', 'S', 'T', 'Y', 'C', 'N', 'Q', 'K', 'R', 'H', 'D', 'E', 'P', 'A', 'W', 'F', 'L', 'I', 'M', 'V',
+                      'g', 's', 't', 'y', 'c', 'n', 'q', 'k', 'r', 'h', 'd', 'e', 'p', 'a', 'w', 'f', 'l', 'i', 'm', 'v'), #'s', 't', 'y'),
+           group = c(rep('Polar', 7), rep('Basic', 3), rep('Acidic', 2), rep('Hydrophobic', 8), rep('Modified', 20)),
+           col = c(rep('#109648', 7), rep('#255C99', 3), rep('#D62839', 2), rep('#221E22', 8), rep('#ae017e', 20)),
+           stringsAsFactors = F
+        )
   )
   
   if(!'group' %in% names(cs)) cs$group = cs$letter

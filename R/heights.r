@@ -1,5 +1,6 @@
 # Namespaces
-.AA_NAMESPACE = function() c('A', 'R', 'N', 'D', 'C', 'Q', 'E', 'G', 'H', 'I', 'L', 'K', 'M', 'F', 'P', 'S', 'T', 'W', 'Y', 'V')
+.AA_NAMESPACE = function() c('A', 'R', 'N', 'D', 'C', 'Q', 'E', 'G', 'H', 'I', 'L', 'K', 'M', 'F', 'P', 'S', 'T', 'W', 'Y', 'V',
+                             'a', 'r', 'n', 'd', 'c', 'q', 'e', 'g', 'h', 'i', 'l', 'k', 'm', 'f', 'p', 's', 't', 'w', 'y', 'v')
 .DNA_NAMESPACE = function() c('A', 'T', 'G', 'C')
 .RNA_NAMESPACE = function() c('A', 'U', 'G', 'C')
 
@@ -106,7 +107,8 @@ computeBits <- function(pwm, N=4, Nseqs=NULL){
 # @param seq_type sequence type
 # @param namespace letters used for matrix construction
 # @param keep_letter_mat Keep letter matrix for some height methods
-makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F){
+makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F,
+                    additionalAA = additionalAA){
   
   letter_mat = NA
   if(is.matrix(seqs)){
@@ -172,7 +174,13 @@ makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F){
   }
   
   # Number of letters in ns
-  N = length(namespace)
+  #N = length(namespace)
+  if(!(is.null(additionalAA))){
+    i = length(as.list(strsplit(additionalAA, '')[[1]]))
+  }else{
+    i = 0
+  }
+  N = 20 + i
   
   # Assign seq type and namespace as attributes
   attr(pfm_mat, 'seq_type') = seq_type
@@ -265,9 +273,11 @@ matrix_to_heights <- function(mat, seq_type, decreasing=T){
 
 
 # Shannon entropy method
-bits_method <- function(seqs, decreasing, ...){
+bits_method <- function(seqs, decreasing,
+                        additionalAA = additionalAA, ...){
   # Make PFM
-  pfm = makePFM(seqs, ...)
+  pfm = makePFM(seqs,
+                additionalAA = additionalAA, ...)
 
   # Get ic
   ic = attr(pfm, 'bits')

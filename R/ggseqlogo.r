@@ -23,7 +23,7 @@ newRange <- function(old_vals, new_min=0, new_max=1){
 #' @export
 list_fonts <- function(v=T){
   
-  fonts = c('helvetica_regular','helvetica_bold', 'helvetica_light',
+  fonts = c('helvetica_regular','helvetica_bold', 'helvetica_light', 'helvetica_modified',
             'roboto_medium','roboto_bold', 'roboto_regular',
             'akrobat_bold', 'akrobat_regular', 
             'roboto_slab_bold', 'roboto_slab_regular', 'roboto_slab_light', 
@@ -66,7 +66,8 @@ get_font <- function(font){
 # Generate height data for logo
 logo_data <- function( seqs, method='bits', stack_width=0.95, 
                        rev_stack_order=F, font, seq_group=1, 
-                       seq_type = 'auto', namespace=NULL ){
+                       seq_type = 'auto', namespace=NULL, 
+                       additionalAA=NULL ){
 
   # Get font 
   font_df = get_font(font)
@@ -76,7 +77,8 @@ logo_data <- function( seqs, method='bits', stack_width=0.95,
   
   # Generate heights based on method
   if(method == 'bits'){
-    hh = bits_method(seqs, decreasing = rev_stack_order, seq_type = seq_type, namespace = namespace)
+    hh = bits_method(seqs, decreasing = rev_stack_order, seq_type = seq_type, namespace = namespace,
+                     additionalAA = additionalAA)
   }else if(method == 'probability'){
     hh = probability_method(seqs, decreasing = rev_stack_order, seq_type = seq_type, namespace = namespace)
   }else if(method == 'custom'){
@@ -149,7 +151,8 @@ theme_logo <- function(base_size=12, base_family=''){
 geom_logo <- function(data = NULL, method='bits', seq_type='auto', namespace=NULL,
                       font='roboto_medium', stack_width=0.95, rev_stack_order=F, col_scheme = 'auto',
                       low_col='black', high_col='yellow', na_col='grey20',
-                      plot=T, ...) {
+                      plot=T,
+                      additionalAA = additionalAA, ...) {
   
   if(stack_width > 1 | stack_width <= 0) stop('"stack_width" must be between 0 and 1')
   if(is.null(data)) stop('Missing "data" parameter!')
@@ -175,7 +178,8 @@ geom_logo <- function(data = NULL, method='bits', seq_type='auto', namespace=NUL
       curr_seqs = data[[n]]
       logo_data(seqs = curr_seqs, method = method, stack_width = stack_width, 
                 rev_stack_order = rev_stack_order, seq_group = n, seq_type = seq_type, 
-                font = font, namespace=namespace)
+                font = font, namespace=namespace,
+                additionalAA = additionalAA)
     })
     data = do.call(rbind, data_sp)
     # Set factor for order of facet
