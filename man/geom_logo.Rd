@@ -7,7 +7,8 @@
 geom_logo(data = NULL, method = "bits", seq_type = "auto",
   namespace = NULL, font = "roboto_medium", stack_width = 0.95,
   rev_stack_order = F, col_scheme = "auto", low_col = "black",
-  high_col = "yellow", na_col = "grey20", plot = T, ...)
+  high_col = "yellow", na_col = "grey20", plot = T, additionalAA = NULL,
+  smallSampleCorr = TRUE, legendText = TRUE, ...)
 }
 \arguments{
 \item{data}{Character vector of sequences or named list of sequences. All sequences must have same width.}
@@ -34,6 +35,12 @@ One can also pass custom color scheme objects created with the \code{make_col_sc
 \item{na_col}{Color for letters missing in color scheme (default: "grey20")}
 
 \item{plot}{If \code{FALSE}, plotting data is returned}
+
+\item{additionalAA}{Amino acids that include a modification.}
+
+\item{smallSampleCorr}{Include small-sample correction in information content or not.}
+
+\item{legendText}{Plot legend or not.}
 
 \item{...}{Additional arguments passed to layer params}
 }
