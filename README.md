@@ -18,7 +18,7 @@ R package ```ggplot2```.
 
 ### Installation
 
-```devtools::install_github("GfellerLab/ggseqlogoMOD")```
+```devtools::install_github("GfellerLab/ggseqlogo")```
 
 
 ### Usage
