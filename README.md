@@ -9,7 +9,7 @@ Plotting the sequence logo of peptides with modifications in purple. Modified re
 
 Default values are for sequences inlcuding phosphorylated residues (i.e. sequences over an alphabet of 23 amino acids, 20 canonical amino acids plus s, t, and y).
 
-```ggseqlogoMOD``` is a further developed version of the package ```ggseqlogo``` (Wagih, Omar. ggseqlogo: a versatile R package for drawing sequence logos. Bioinformatics 33, no. 22 (2017): 3645-3647. https://doi.org/10.1093/bioinformatics/btx469 PMID: 29036507), with minor changes for modified amino acids.
+```ggseqlogoMOD``` is a further developed version of ```ggseqlogo``` function of the package ```ggseqlogo``` (Wagih, Omar. ggseqlogo: a versatile R package for drawing sequence logos. Bioinformatics 33, no. 22 (2017): 3645-3647. https://doi.org/10.1093/bioinformatics/btx469 PMID: 29036507), with minor changes for modified amino acids.
 
 
 ### Prerequisites
@@ -77,7 +77,7 @@ ggseqlogoMOD(data,
 
 Load package:
 ```
-library(ggseqlogoMOD)
+library(ggseqlogo)
 ```
 
 Load example data:

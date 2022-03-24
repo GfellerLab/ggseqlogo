@@ -223,9 +223,9 @@ geom_logo <- function(data = NULL, method='bits', seq_type='auto', namespace=NUL
   guides_opts = NULL
   # option to turn legend off
   if(legendText){
-    if(identical(cs$letter, cs$group)) guides_opts = guides(fill=F)
+    if(identical(cs$letter, cs$group)) guides_opts = guides(fill='none')#F)
   } else{
-    guides_opts = guides(fill=F)
+    guides_opts = guides(fill='none')#F)
   }
   
   y_lim = NULL
