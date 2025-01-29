@@ -113,6 +113,8 @@ computeBits <- function(pwm, N=4, Nseqs=NULL,
 makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F,
                     additionalAA = additionalAA, smallSampleCorr=smallSampleCorr){
   
+  #print(seqs)
+  
   letter_mat = NA
   if(is.matrix(seqs)){
     # Process matrix
@@ -171,13 +173,17 @@ makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F,
       col
     })
     
+
     mat = matrix((letter_mat %in% namespace), nrow=nrow(letter_mat))
     attr(pfm_mat, 'nongapped') = apply(mat, 2, sum)
     attr(pfm_mat, 'nseqs') = nseqs
+    #
+    
   }
-  
+
   # Number of letters in ns
   #N = length(namespace)
+ 
   if(!(is.null(additionalAA))){
     i = length(as.list(strsplit(additionalAA, '')[[1]]))
   }else{
@@ -185,6 +191,7 @@ makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F,
   }
   N = 20 + i
   
+
   # Assign seq type and namespace as attributes
   attr(pfm_mat, 'seq_type') = seq_type
   attr(pfm_mat, 'namespace') = namespace
@@ -201,6 +208,7 @@ makePFM <- function(seqs, seq_type='auto', namespace=NULL, keep_letter_mat=F,
   colnames(pfm_mat) = 1:num_pos
   
   if(keep_letter_mat) return(list(letter_mat = letter_mat, pfm=pfm_mat))
+
 
   return(pfm_mat)
 }

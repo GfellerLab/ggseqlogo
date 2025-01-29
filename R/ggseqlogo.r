@@ -80,7 +80,8 @@ logo_data <- function( seqs, method='bits', stack_width=0.95,
     hh = bits_method(seqs, decreasing = rev_stack_order, seq_type = seq_type, namespace = namespace,
                      additionalAA = additionalAA, smallSampleCorr = smallSampleCorr)
   }else if(method == 'probability'){
-    hh = probability_method(seqs, decreasing = rev_stack_order, seq_type = seq_type, namespace = namespace)
+    hh = probability_method(seqs, decreasing = rev_stack_order, seq_type = seq_type, namespace = namespace,
+                     additionalAA = additionalAA, smallSampleCorr = smallSampleCorr)
   }else if(method == 'custom'){
     if(seq_type == 'auto') seq_type = guessSeqType(rownames(seqs))
     hh = matrix_to_heights(seqs, seq_type, decreasing = rev_stack_order)
@@ -361,6 +362,7 @@ ggseqlogoMOD <- function( data,
                           additionalAA = 'sty',
                           seq_type = 'aa',
                           font = 'helvetica_modified',
+                          methods= 'bits',
                           legendText = FALSE,
                           ylim = c(0, log2(20 + length(strsplit(additionalAA, split = '')[[1]])) ),
                           title = NULL,
@@ -377,11 +379,15 @@ ggseqlogoMOD <- function( data,
     lengthP = ncol(data)
   }
   
+  if(methods=='probability'){
+    ylim <- c(0,1)
+  }
+  
   #### plot sequence logo
   p = ggplot() +
     
     #### do the plotting of the sequence logo (by Omar Wagih's ggseqlogo)
-    geom_logo(data=data, font=font, 
+    geom_logo(data=data, font=font, method=methods,
               col_scheme=col_scheme, legendText=legendText,
               smallSampleCorr = smallSampleCorr, additionalAA = additionalAA) +
     
