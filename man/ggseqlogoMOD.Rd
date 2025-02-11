@@ -4,11 +4,24 @@
 \alias{ggseqlogoMOD}
 \title{Modified version of ggseqlogo to display non-canonical (e.g. phosphorylated) amino acids in different color.}
 \usage{
-ggseqlogoMOD(data, smallSampleCorr = FALSE, col_scheme = "modified",
-  additionalAA = "sty", seq_type = "aa", font = "helvetica_modified",
-  legendText = FALSE, ylim = c(0, log2(20 + length(strsplit(additionalAA,
-  split = "")[[1]]))), title = NULL, titleSize = 24, titlePos = 0.5,
-  axisTextSizeX = 18, axisTextSizeY = 18, axisTitleSize = 18, ...)
+ggseqlogoMOD(
+  data,
+  smallSampleCorr = FALSE,
+  col_scheme = "modified",
+  additionalAA = "sty",
+  seq_type = "aa",
+  font = "helvetica_modified",
+  methods = "bits",
+  legendText = FALSE,
+  ylim = c(0, log2(20 + length(strsplit(additionalAA, split = "")[[1]]))),
+  title = NULL,
+  titleSize = 24,
+  titlePos = 0.5,
+  axisTextSizeX = 18,
+  axisTextSizeY = 18,
+  axisTitleSize = 18,
+  ...
+)
 }
 \arguments{
 \item{data}{A list of sequences or a position weight matrix.}

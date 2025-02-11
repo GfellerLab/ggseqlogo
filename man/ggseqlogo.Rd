@@ -4,8 +4,14 @@
 \alias{ggseqlogo}
 \title{Quick sequence logo plot}
 \usage{
-ggseqlogo(data, facet = "wrap", scales = "free_x", ncol = NULL,
-  nrow = NULL, ...)
+ggseqlogo(
+  data,
+  facet = "wrap",
+  scales = "free_x",
+  ncol = NULL,
+  nrow = NULL,
+  ...
+)
 }
 \arguments{
 \item{data}{Character vector of sequences or named list of sequences. All sequences must have same width}

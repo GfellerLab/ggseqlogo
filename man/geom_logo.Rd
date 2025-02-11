@@ -4,11 +4,24 @@
 \alias{geom_logo}
 \title{Plots sequence logo as a layer on ggplot}
 \usage{
-geom_logo(data = NULL, method = "bits", seq_type = "auto",
-  namespace = NULL, font = "roboto_medium", stack_width = 0.95,
-  rev_stack_order = F, col_scheme = "auto", low_col = "black",
-  high_col = "yellow", na_col = "grey20", plot = T, additionalAA = NULL,
-  smallSampleCorr = TRUE, legendText = TRUE, ...)
+geom_logo(
+  data = NULL,
+  method = "bits",
+  seq_type = "auto",
+  namespace = NULL,
+  font = "roboto_medium",
+  stack_width = 0.95,
+  rev_stack_order = F,
+  col_scheme = "auto",
+  low_col = "black",
+  high_col = "yellow",
+  na_col = "grey20",
+  plot = T,
+  additionalAA = NULL,
+  smallSampleCorr = TRUE,
+  legendText = TRUE,
+  ...
+)
 }
 \arguments{
 \item{data}{Character vector of sequences or named list of sequences. All sequences must have same width.}

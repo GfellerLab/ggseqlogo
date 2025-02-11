@@ -18,7 +18,7 @@ R package ```ggplot2```.
 
 ### Installation
 
-```devtools::install_github("GfellerLab/ggseqlogo")```
+```remotes::install_github("GfellerLab/ggseqlogo")```
 
 
 ### Usage
@@ -77,12 +77,12 @@ ggseqlogoMOD(data,
 
 Load package:
 ```
-library(ggseqlogo)
+library(ggseqlogoMOD)
 ```
 
 Load example data:
 ```
-data(data_B0702, package="ggseqlogo")
+data(data_B0702, package="ggseqlogoMOD")
 ```
 
 Plot phosphorylated binding motif of HLA-B0702:
@@ -93,4 +93,4 @@ ggseqlogoMOD(b7p)
 
 ### Contact information ggseqlogoMOD
 
-Marthe Solleder (marthe.solleder@unil.ch) and David Gfeller (david.gfeller@unil.ch).
+David Gfeller (david.gfeller@unil.ch) and Julien Racle (julien.racle@unil.ch).

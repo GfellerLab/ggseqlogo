@@ -393,8 +393,8 @@ ggseqlogoMOD <- function( data,
     
     #### size of title, size of x and y tick marks, size of y axis description
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-          panel.background = element_blank(), axis.line = element_line(colour = "black", size = 0.5),
-          axis.ticks = element_line(colour = 'black', size = 0.5),
+          panel.background = element_blank(), axis.line = element_line(colour = "black", linewidth = 0.5),
+          axis.ticks = element_line(colour = 'black', linewidth = 0.5),
           plot.title = element_text(size=titleSize, hjust=titlePos, vjust = 0.1, family="sans"),
           axis.text.x = element_text(size=axisTextSizeX, color = 'black', family="sans"),
           axis.text.y = element_text(size=axisTextSizeY, color = 'black', family="sans"),
@@ -403,7 +403,7 @@ ggseqlogoMOD <- function( data,
     #### remove space between axis and plot space
     scale_y_continuous(expand = c(0, 0)) +
     
-    #### costum y axis range
+    #### custom y axis range
     coord_cartesian(ylim = ylim) +
     
     #### add title if given
