@@ -23,28 +23,30 @@ newRange <- function(old_vals, new_min=0, new_max=1){
 #' @export
 list_fonts <- function(v=T){
   
-  fonts = c('helvetica_regular','helvetica_bold', 'helvetica_light', 'helvetica_modified',
-            'roboto_medium','roboto_bold', 'roboto_regular',
-            'akrobat_bold', 'akrobat_regular', 
-            'roboto_slab_bold', 'roboto_slab_regular', 'roboto_slab_light', 
-            'xkcd_regular')
+  GGSEQLOGO_FONT_BASE = getOption('GGSEQLOGO_FONT_BASE')
+  if(is.null(GGSEQLOGO_FONT_BASE)){
+    GGSEQLOGO_FONT_BASE=system.file("extdata", "", package = "ggseqlogoMOD")
+    options(GGSEQLOGO_FONT_BASE=GGSEQLOGO_FONT_BASE)
+  }
+  fonts <- gsub(".font$", "",
+    list.files(GGSEQLOGO_FONT_BASE, pattern = '.font$', full.names = F))
   if(!v) return(fonts)
-  message('Available ggseqlogo fonts:')
+  message('Available ggseqlogoMOD fonts:')
   for(f in fonts) message('\t', f)
 }
 
 
 # Read font from file if not in global envir.
 get_font <- function(font){
-  
+
   GGSEQLOGO_FONT_BASE = getOption('GGSEQLOGO_FONT_BASE')
   if(is.null(GGSEQLOGO_FONT_BASE)){
     GGSEQLOGO_FONT_BASE=system.file("extdata", "", package = "ggseqlogoMOD")
     options(GGSEQLOGO_FONT_BASE=GGSEQLOGO_FONT_BASE)
   }
-  
-  #all_fonts = c('sf_bold', 'sf_regular', 'ms_bold', 'ms_regular', 'xkcd_regular')
-  font = match.arg(tolower(font), list_fonts(F))
+  font = match.arg(font, list_fonts(F))
+  GGSEQLOGO_FONT_BASE = getOption('GGSEQLOGO_FONT_BASE')
+  # This option will have been set in list_fonts if not already existing.
   font_filename = paste0(font, '.font')
   font_obj_name = sprintf('.ggseqlogo_font_%s', font)
   
