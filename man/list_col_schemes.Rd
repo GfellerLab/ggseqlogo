@@ -2,7 +2,7 @@
 % Please edit documentation in R/col_schemes.r
 \name{list_col_schemes}
 \alias{list_col_schemes}
-\title{List color schemes available in ggseqlogo}
+\title{List color schemes available in ggseqlogoMOD}
 \usage{
 list_col_schemes(v = T)
 }
@@ -10,5 +10,5 @@ list_col_schemes(v = T)
 \item{v}{If true, font names are printed to stderr. Otherwise, color scheme names are returned as a character vector}
 }
 \description{
-List color schemes available in ggseqlogo
+List color schemes available in ggseqlogoMOD
 }

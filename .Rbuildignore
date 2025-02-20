@@ -7,3 +7,5 @@ docs/.*$
 inst/fonts/.*$
 README.md
 shiny/.*$
+^.*\.Rproj$
+^\.Rproj\.user$

@@ -1,6 +1,6 @@
-setwd('~/Development/ggseqlogo/')
+setwd('~/Development/ggseqlogoMOD/')
 require(devtools)
-remove.packages('ggseqlogo')
+remove.packages('ggseqlogoMOD')
 R_PATH = '/usr/local/bin/R'
 targz = 'ggseqlogo_0.1.tar.gz'
 system(sprintf('rm -rf dist/%s', targz))
@@ -21,4 +21,4 @@ build('.', path = 'dist/')
 # Install 
 system(sprintf('%s CMD INSTALL dist/%s', R_PATH, targz))
 
-#detach("package:ggseqlogo", unload=TRUE)
+#detach("package:ggseqlogoMOD", unload=TRUE)

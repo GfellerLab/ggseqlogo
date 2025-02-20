@@ -108,7 +108,7 @@ makePolyFont <- function(fontfamily, fontface=2, I_fontfamily=fontfamily, is_bol
 
 
 
-setwd('~/Development/ggseqlogo/inst/fonts/')
+setwd('~/Development/ggseqlogoMOD/inst/fonts/')
 
 # if(F){
 #   # SF bold

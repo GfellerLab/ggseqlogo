@@ -1,5 +1,5 @@
 
-#' List color schemes available in ggseqlogo
+#' List color schemes available in ggseqlogoMOD
 #' 
 #' @param v If true, font names are printed to stderr. Otherwise, color scheme names are returned as a character vector
 #' @export
@@ -8,7 +8,7 @@ list_col_schemes <- function(v=T){
   col_schemes = c('auto', 'chemistry', 'chemistry2','hydrophobicity', 'nucleotide', 'nucleotide2',
              'base_pairing', 'clustalx', 'taylor', 'modified')
   if(!v) return(col_schemes)
-  message('Available ggseqlogo color schemes:')
+  message('Available ggseqlogoMOD color schemes:')
   for(f in col_schemes) message('\t', f)
 }
 

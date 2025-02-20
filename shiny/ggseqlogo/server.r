@@ -1,6 +1,6 @@
 library(shiny)
-require(ggseqlogo)
-# rsconnect::deployApp('~/Development/ggseqlogo/shiny/ggseqlogo/', account = 'omarwagih')
+require(ggseqlogoMOD)
+# rsconnect::deployApp('~/Development/ggseqlogoMOD/shiny/ggseqlogo/', account = 'omarwagih')
 
 do_plot <- function(input){
   
@@ -9,7 +9,7 @@ do_plot <- function(input){
   if(stack_width <= 0) stack_width = 1e-10
   
   # Draw sequence logo
-  ggseqlogo(seqs, col_scheme=input$col_scheme, 
+  ggseqlogoMOD(seqs, col_scheme=input$col_scheme, 
             font=input$font, method=input$method, 
             stack_width=stack_width, 
             rev_stack_order=input$rev_stack_order, 
@@ -29,7 +29,7 @@ shinyServer(function(input, output) {
   # Download plot filename, content
   output$download_plot <- downloadHandler(
     filename =  function() {
-      paste("ggseqlogo", input$download_format, sep=".")
+      paste("ggseqlogoMOD", input$download_format, sep=".")
     },
     # content is a function with argument file. content writes the plot to the device
     content = function(file) {

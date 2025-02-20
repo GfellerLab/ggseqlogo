@@ -61,10 +61,10 @@ Default values are for sequences inlcuding phosphorylated residues (i.e. sequenc
 }
 \examples{
 # Load package:
-library(ggseqlogo)
+library(ggseqlogoMOD)
 
 # Load example data:
-data(data_B0702, package="ggseqlogo")
+data(data_B0702, package="ggseqlogoMOD")
 
 # Plot phosphorylated binding motif of HLA-B0702:
 ggseqlogoMOD(b7p)

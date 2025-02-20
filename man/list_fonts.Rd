@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggseqlogo.r
 \name{list_fonts}
 \alias{list_fonts}
-\title{List fonts available in ggseqlogo}
+\title{List fonts available in ggseqlogoMOD}
 \usage{
 list_fonts(v = T)
 }
@@ -10,5 +10,5 @@ list_fonts(v = T)
 \item{v}{If true, font names are printed to stderr. Otherwise, font names are returned as a character vector}
 }
 \description{
-List fonts available in ggseqlogo
+List fonts available in ggseqlogoMOD
 }

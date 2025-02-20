@@ -1,9 +1,9 @@
 # if(T){
 #   require(ggplot2)
-#   setwd('~/Development/ggseqlogo/')
+#   setwd('~/Development/ggseqlogoMOD/')
 #   source('R/heights.r')
 #   source('R/col_schemes.r')
-#   GGSEQLOGO_FONT_BASE = '~/Development/ggseqlogo/inst/fonts/'
+#   GGSEQLOGO_FONT_BASE = '~/Development/ggseqlogoMOD/inst/fonts/'
 # }
 
 
@@ -17,7 +17,7 @@ newRange <- function(old_vals, new_min=0, new_max=1){
 }
 
 
-#' List fonts available in ggseqlogo
+#' List fonts available in ggseqlogoMOD
 #' 
 #' @param v If true, font names are printed to stderr. Otherwise, font names are returned as a character vector
 #' @export
@@ -39,7 +39,7 @@ get_font <- function(font){
   
   GGSEQLOGO_FONT_BASE = getOption('GGSEQLOGO_FONT_BASE')
   if(is.null(GGSEQLOGO_FONT_BASE)){
-    GGSEQLOGO_FONT_BASE=system.file("extdata", "", package = "ggseqlogo")
+    GGSEQLOGO_FONT_BASE=system.file("extdata", "", package = "ggseqlogoMOD")
     options(GGSEQLOGO_FONT_BASE=GGSEQLOGO_FONT_BASE)
   }
   
@@ -349,10 +349,10 @@ ggseqlogo <- function(data, facet='wrap', scales='free_x', ncol=NULL, nrow=NULL,
 #' @export
 #' @examples
 #' # Load package:
-#' library(ggseqlogo)
+#' library(ggseqlogoMOD)
 #'
 #' # Load example data:
-#' data(data_B0702, package="ggseqlogo")
+#' data(data_B0702, package="ggseqlogoMOD")
 #'
 #' # Plot phosphorylated binding motif of HLA-B0702:
 #' ggseqlogoMOD(b7p)

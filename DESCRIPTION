@@ -18,7 +18,7 @@ Description: This is a fork from ggseqlogo, allowing to draw highly versatile
 License: LGPL
 URL: https://github.com/GfellerLab/ggseqlogo
 BugReports: https://github.com/GfellerLab/ggseqlogo/issues
-Encoding: latin1
+Encoding: UTF-8
 Imports: ggplot2
 RoxygenNote: 7.3.2
 Suggests: knitr,
