@@ -1,7 +1,7 @@
 Package: ggseqlogoMOD
 Type: Package
 Title: An extension of ggseqlogo to draw publication-ready sequence logos
-Version: 0.1
+Version: 0.1.2
 Date: 2017-07-25
 Authors@R: c(
   person("Omar", "Wagih", , "omarwagih@gmail.com", role = c("aut")),
